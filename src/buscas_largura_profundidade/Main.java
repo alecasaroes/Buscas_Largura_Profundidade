@@ -6,6 +6,28 @@ package buscas_largura_profundidade;
  */
 public class Main {
     
+    public static void funcao_Visita (int verticeInicialArbitrario, Pilha pilha, int numeroDeVertices, MatrizAdjacente grafo) {
+        
+        int vertice = verticeInicialArbitrario;
+        char verticesVisitados[] = new char[numeroDeVertices];
+        Fila verticesAdjacentes = new Fila();
+        
+        verticesVisitados[vertice-1] = 'P';
+        pilha.push(vertice);
+        verticesAdjacentes = grafo.ListaDeVerticesAdjacenciaAoVertice(vertice);
+        while(true){
+            int i = 0;
+            if (verticesAdjacentes.peek() != 'P'){
+                funcao_Visita(verticesAdjacentes.peek(), pilha, numeroDeVertices, grafo);
+            }
+        }
+        //pilha.pop();
+        
+        
+        
+        
+    }
+    
     public static void main(String[] args) {
         
         MatrizAdjacente grafo = new MatrizAdjacente();
@@ -92,6 +114,8 @@ public class Main {
         grafo.inserirAresta(6, 1);
         
         grafo.imprimirGrafo();
+        
+        grafo.buscaEmProfundidade(grafo, 2);
         
         
         

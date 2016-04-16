@@ -62,7 +62,6 @@ public class MatrizAdjacente {
         return numeroDeVertices;
     }
     
-    
     public void buscaEmLargura(MatrizAdjacente grafo, int verticeInicialArbitrario) {
         Fila fila = new Fila();
         Fila verticesAdjacentes = new Fila();
@@ -89,7 +88,12 @@ public class MatrizAdjacente {
         System.out.println("");
     }
     
-    
+    public void buscaEmProfundidade (MatrizAdjacente grafo, int verticeInicialArbitrario) {
+        Pilha pilha = new Pilha();
+        int verticeArbitrario = verticeInicialArbitrario;
+        int numeroDeVertices = grafo.getNumeroDeVertices();
+        Main.funcao_Visita(verticeInicialArbitrario, pilha, numeroDeVertices, grafo);
+    }
     
 }
 
