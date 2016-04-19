@@ -34,7 +34,7 @@ public class MatrizAdjacente {
             System.out.println("NÃO EXISTE ARESTA DE v" + verticeOrigem + " à v" + verticeDestino);
     }
     
-    public Fila ListaDeVerticesAdjacenciaAoVertice(int vertice){
+    public Fila listaDeVerticesAdjacenciaAoVertice(int vertice){
         Fila lista = new Fila();
         for (int i = 0; i < numeroDeVertices; i++) {
             if (matrizAdjacente[vertice-1][i] == 1)
@@ -57,15 +57,11 @@ public class MatrizAdjacente {
         }
         System.out.println("");
     }
-
-    public int getNumeroDeVertices() {
-        return numeroDeVertices;
-    }
     
     public void buscaEmLargura(MatrizAdjacente grafo, int verticeInicialArbitrario) {
         Fila fila = new Fila();
         Fila verticesAdjacentes = new Fila();
-        char verticesVisitados[] = new char [grafo.getNumeroDeVertices()];
+        char verticesVisitados[] = new char [numeroDeVertices];
         int verticeArbitrario = verticeInicialArbitrario;
         fila.push(verticeArbitrario);
         System.out.println("Vertice Inicial Arbitrario: v" + verticeArbitrario);
@@ -75,7 +71,7 @@ public class MatrizAdjacente {
             fila.pop();
             verticesVisitados[verticeVisitado-1] = 'V';
             System.out.print("v" + verticeVisitado + ", ");
-            verticesAdjacentes = grafo.ListaDeVerticesAdjacenciaAoVertice(verticeVisitado);
+            verticesAdjacentes = grafo.listaDeVerticesAdjacenciaAoVertice(verticeVisitado);
             while(!verticesAdjacentes.isEmpty()){
                 int proxVertice = verticesAdjacentes.peek();
                 if (verticesVisitados[proxVertice-1] != 'V' && verticesVisitados[proxVertice-1] != 'P'){
@@ -88,11 +84,29 @@ public class MatrizAdjacente {
         System.out.println("");
     }
     
-    public void buscaEmProfundidade (MatrizAdjacente grafo, int verticeInicialArbitrario) {
+    public void buscaEmProfundidade (MatrizAdjacente grafo, int verticeArbitrario) {
         Pilha pilha = new Pilha();
-        int verticeArbitrario = verticeInicialArbitrario;
-        int numeroDeVertices = grafo.getNumeroDeVertices();
-        Main.funcao_Visita(verticeInicialArbitrario, pilha, numeroDeVertices, grafo);
+        char verticesVisitados[] = new char[numeroDeVertices];
+        Fila verticesAdjacentes = new Fila();
+        System.out.print("Vertice Inicial Arbitrario: " + verticeArbitrario + "\nOrdem visitada: ");
+        funcao_Visita(verticeArbitrario, pilha, grafo, verticesVisitados, verticesAdjacentes);
+        System.out.println("");
+    }
+    
+    private void funcao_Visita (int verticeArbitrario, Pilha pilha, MatrizAdjacente grafo, char verticesVisitados[], Fila verticesAdjacentes) {
+        
+        verticesVisitados[verticeArbitrario-1] = 'P';
+        pilha.push(verticeArbitrario);
+        verticesAdjacentes = grafo.listaDeVerticesAdjacenciaAoVertice(verticeArbitrario);
+        while(!verticesAdjacentes.isEmpty()){
+            if (verticesVisitados[verticesAdjacentes.peek()-1] != 'P' && verticesVisitados[verticesAdjacentes.peek()-1] != 'V') {
+                funcao_Visita(verticesAdjacentes.peek(), pilha, grafo, verticesVisitados, verticesAdjacentes);
+            }
+            verticesAdjacentes.pop();
+        }
+        verticesVisitados[pilha.peek()-1] = 'V';
+        System.out.print("v" + pilha.peek() + ", ");
+        pilha.pop();
     }
     
 }

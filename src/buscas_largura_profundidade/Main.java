@@ -6,7 +6,7 @@ package buscas_largura_profundidade;
  */
 public class Main {
     
-    public static void funcao_Visita (int verticeInicialArbitrario, Pilha pilha, int numeroDeVertices, MatrizAdjacente grafo) {
+    /*public static void funcao_Visita (int verticeInicialArbitrario, Pilha pilha, int numeroDeVertices, MatrizAdjacente grafo) {
         
         int vertice = verticeInicialArbitrario;
         char verticesVisitados[] = new char[numeroDeVertices];
@@ -26,7 +26,7 @@ public class Main {
         
         
         
-    }
+    }*/
     
     public static void main(String[] args) {
         
@@ -100,18 +100,20 @@ public class Main {
         System.out.println("\nRESULTADOS DA IMPLEMENTAÇÃO DE BUSCA EM PROFUNDIDADE:"
                 + "\n====================================\n");
         
-        grafo.criarGrafo(6);
+        grafo.criarGrafo(5);
         
         grafo.inserirAresta(1, 2);
-        grafo.inserirAresta(1, 6);
+        grafo.inserirAresta(1, 3);
         grafo.inserirAresta(2, 1);
         grafo.inserirAresta(2, 3);
-        grafo.inserirAresta(2, 5);
+        grafo.inserirAresta(3, 1);
         grafo.inserirAresta(3, 2);
         grafo.inserirAresta(3, 4);
+        grafo.inserirAresta(3, 5);
         grafo.inserirAresta(4, 3);
-        grafo.inserirAresta(5, 2);
-        grafo.inserirAresta(6, 1);
+        grafo.inserirAresta(4, 5);
+        grafo.inserirAresta(5, 3);
+        grafo.inserirAresta(5, 4);
         
         grafo.imprimirGrafo();
         
