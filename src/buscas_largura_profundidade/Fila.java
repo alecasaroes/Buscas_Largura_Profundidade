@@ -1,35 +1,43 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
+
 package buscas_largura_profundidade;
 
 /**
  *
  * @author alexandre.gcazaroes1
+ * 
  */
 public class Fila {
 
-    private static final int tamanhoFila = 10;
-    
+    private static final int tamanhoDaFila = 100;
     private int itens[];
-    
     private int total;
     
-    public Fila () {
-        itens = new int[tamanhoFila];
+    public Fila() {
+        itens = new int[tamanhoDaFila];
         total = 0;
     }
     
     public void push (int valor) {
         if (isFull()) {
-            System.out.println("fila vazia");
+            System.out.println("Fila cheia");
             return;
-        }            
+        }
         int indice = total;
-        total += 1;
+        total++;
         itens[indice] = valor;
+    }
+    
+    public int pop () {
+        if (isEmpty()) {
+            System.out.println("Fila vazia");
+            return 0;
+        }
+        int valor = itens[0];
+        for (int i = 0; i < (total-1); i++)
+            itens[i] = itens[i+1];
+        total--;
+        return valor;
     }
     
     public boolean isEmpty () {
@@ -39,26 +47,13 @@ public class Fila {
     }
     
     public boolean isFull () {
-        if ((total) >= tamanhoFila) {
+        if (total >= tamanhoDaFila)
             return true;
-        }
         return false;
     }
     
     public int peek () {
         return itens[0];  
-    }
-    
-    public int pop () {
-        if (isEmpty()) {
-            System.out.println("fila vazia");
-            return 0;
-        }
-        int valor = itens[0];
-        for (int i = 0; i < (total-1); i += 1)
-            itens[i] = itens[i+1];
-        total -= 1;
-        return valor;
     }
     
 }

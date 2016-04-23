@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package buscas_largura_profundidade;
 
 /**
@@ -12,13 +8,33 @@ package buscas_largura_profundidade;
  */
 public class Pilha {
 
-    private static final int tamanhoPilha = 100;
+    private static final int tamanhoDaPilha = 100;
     private int itens[];
     private int topo;
     
     public Pilha () {
-        itens = new int[tamanhoPilha];
+        itens = new int[tamanhoDaPilha];
         topo = -1;
+    }
+    
+    public void push (int valor) {
+        if (isFull()) {
+            System.out.println("Pilha cheia");
+            return;
+        } 
+        topo++;
+        int indice = topo;
+        itens[indice] = valor;
+    }
+    
+    public int pop () {
+        if (isEmpty()) {
+            System.out.println("Pilha vazia");
+            return 0;
+        }
+        int indice = topo;
+        topo--;
+        return itens[indice];
     }
     
     public boolean isEmpty () {
@@ -27,30 +43,9 @@ public class Pilha {
         return false;
     }
     
-    public void push (int valor) {
-        if ( isFull() ) {
-            System.out.println("pilha cheia");
-            return;
-        }            
-        topo +=1;
-        int indice = topo;
-        itens[indice]= valor;
-    }
-    
-    public int pop () {
-        if (isEmpty()) {
-            System.out.println("pilha vazia");
-            return 0;
-        }
-        int indice = topo;
-        topo = topo -1;
-        return itens[indice];
-    }
-    
     public boolean isFull () {
-        if ( (topo+1) >= tamanhoPilha) {
+        if ((topo+1) >= tamanhoDaPilha)
             return true;
-        }
         return false;
     }
     
