@@ -3,7 +3,7 @@ package buscas_largura_profundidade;
 
 /**
  *
- * @author alexandre.gcazaroes1
+ * @author ALEXANDRE GOMES CAZAROES
  * 
  */
 public class Pilha {

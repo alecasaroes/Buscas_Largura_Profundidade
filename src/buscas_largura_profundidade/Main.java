@@ -2,7 +2,7 @@ package buscas_largura_profundidade;
 
 /**
  *
- * @author alexandre.gcazaroes
+ * @author ALEXANDRE GOMES CAZAROES
  * 
  */
 public class Main {
