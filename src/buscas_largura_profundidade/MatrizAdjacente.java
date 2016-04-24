@@ -89,18 +89,17 @@ public class MatrizAdjacente {
         char verticesVisitados[] = new char[numeroDeVertices];
         Fila verticesAdjacentes = new Fila();
         System.out.print("Vertice Inicial Arbitrario: " + verticeArbitrario + "\nOrdem visitada: ");
-        funcao_Visita(verticeArbitrario, pilha, grafo, verticesVisitados, verticesAdjacentes);
+        funcaoVisita(verticeArbitrario, pilha, grafo, verticesVisitados, verticesAdjacentes);
         System.out.println("");
     }
     
-    private void funcao_Visita (int verticeArbitrario, Pilha pilha, MatrizAdjacente grafo, char verticesVisitados[], Fila verticesAdjacentes) {
-        
+    private void funcaoVisita (int verticeArbitrario, Pilha pilha, MatrizAdjacente grafo, char verticesVisitados[], Fila verticesAdjacentes) {
         verticesVisitados[verticeArbitrario-1] = 'P';
         pilha.push(verticeArbitrario);
         verticesAdjacentes = grafo.listaDeVerticesAdjacenciaAoVertice(verticeArbitrario);
         while(!verticesAdjacentes.isEmpty()){
             if (verticesVisitados[verticesAdjacentes.peek()-1] != 'P' && verticesVisitados[verticesAdjacentes.peek()-1] != 'V') {
-                funcao_Visita(verticesAdjacentes.peek(), pilha, grafo, verticesVisitados, verticesAdjacentes);
+                funcaoVisita(verticesAdjacentes.peek(), pilha, grafo, verticesVisitados, verticesAdjacentes);
             }
             verticesAdjacentes.pop();
         }
@@ -110,5 +109,3 @@ public class MatrizAdjacente {
     }
     
 }
-
-
